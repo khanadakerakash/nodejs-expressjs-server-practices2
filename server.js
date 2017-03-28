@@ -2,20 +2,21 @@
  * Created by Kh Akash on 3/26/2017.
  */
 const express = require('express');
+const hbs     = require('hbs');
 
 var app = express();
 
 app.set('view engine', 'hbs');
 
-app.registerPartials(__dirname + '/views/partials');
+hbs.registerPartials(__dirname + '/views/partials');
 
-/*hbs.registerHelper('creatorName', ()=> {
+hbs.registerHelper('creatorName', ()=> {
    return "Kh Akash";
 });
 
-hbs.registerHelper('nowYears', () => {
-   return new Date().setFullYear();
-});*/
+hbs.registerHelper('nowYears', ()=> {
+    return new Date().getFullYear();
+});
 
 app.get('/', (req,res) => {
    res.render('home', {
@@ -25,7 +26,7 @@ app.get('/', (req,res) => {
    });
 });
 
-app.get('/', (req,res) => {
+app.get('/about', (req,res) => {
     res.render('about', {
         page_name  : "about page",
         name       : "about",
@@ -33,7 +34,7 @@ app.get('/', (req,res) => {
     });
 });
 
-app.get('/', (req,res) => {
+app.get('/work', (req,res) => {
     res.render('work', {
         page_name  : "work page",
         name       : "work",
@@ -41,7 +42,7 @@ app.get('/', (req,res) => {
     });
 });
 
-app.get('/', (req,res) => {
+app.get('/contact', (req,res) => {
     res.render('contact', {
         page_name  : "contact page",
         name       : "contact",
